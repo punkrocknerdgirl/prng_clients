@@ -138,7 +138,7 @@ body {
 /* ── Stat cards ── */
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-bottom: 8px;
 }
@@ -432,4 +432,10 @@ body {
 }
 .footer strong {
   color: #fff;
+}
+
+@media (max-width: 640px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
 }
