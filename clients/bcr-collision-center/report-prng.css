@@ -670,6 +670,7 @@ body {
 
 .rs-badge.fixed-fee {
   background: #FFDDEF !important;
+  border-color: #F27EAA !important;
   border-width: 3px !important;
   color: #F27EAA !important;
 }
