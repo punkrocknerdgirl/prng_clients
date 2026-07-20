@@ -26,6 +26,10 @@ body {
   align-items: center;
 }
 
+.quote-header::before {
+  display: none !important;
+}
+
 .quote-header-copy {
   display: flex;
   flex: 1;
