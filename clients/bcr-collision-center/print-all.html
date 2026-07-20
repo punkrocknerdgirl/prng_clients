@@ -100,6 +100,66 @@
       page-break-after: always;
     }
 
+    .print-page .report-section,
+    .print-page .scope-card,
+    .print-page .fdc,
+    .print-page .not-inc,
+    .print-page .fee-bar {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .print-page .report-section {
+      margin-bottom: 12px;
+    }
+
+    .print-page .rs-header {
+      background: transparent;
+      padding: 6px 0 3px;
+    }
+
+    .print-page .rs-body,
+    .print-page .scope-card {
+      padding: 4px 0;
+    }
+
+    .print-page .item-list,
+    .print-page .scope-card ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    .print-page .item-list li,
+    .print-page .scope-card ul li {
+      padding: 3px 0;
+      border-bottom: 0;
+    }
+
+    .print-page .item-list li::before,
+    .print-page .scope-card ul li::before {
+      content: none;
+    }
+
+    .print-page .fee-bar {
+      padding: 10px 0;
+      margin: 12px 0 8px;
+    }
+
+    .print-page .fee-det {
+      gap: 14px;
+    }
+
+    .print-page .not-inc {
+      padding: 6px 0;
+    }
+
+    .print-page .disc {
+      border-top: 0;
+      padding-top: 4px;
+    }
+
     .pdf-header {
       margin: 0 auto 8px;
       page-break-after: avoid;
