@@ -668,6 +668,11 @@ body {
   color: #622e47;
 }
 
+.rs-badge.fixed-fee {
+  background: #FFDDEF !important;
+  color: #F27EAA !important;
+}
+
 .rs-badge.clean {
   background: #cdeeed;
   border: 2px solid #2ca6a4;
