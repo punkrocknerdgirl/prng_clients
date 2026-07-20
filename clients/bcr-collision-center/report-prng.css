@@ -517,6 +517,7 @@ body {
 
 .hbadge.preparer {
   background: rgba(183, 47, 103, 0.42);
+  border: 2px solid #ffb2d6;
   color: #fff;
 }
 
@@ -585,7 +586,19 @@ body {
 }
 
 .rs-badge.clean {
-  background: #a5788f;
+  background: #bfe9e7;
+  border: 2px solid #2ca6a4;
+  color: #2ca6a4;
+}
+
+.not-inc {
+  background: #bfe9e7;
+  border: 2px solid #2ca6a4;
+  color: #2ca6a4;
+}
+
+.not-inc strong {
+  color: #2ca6a4;
 }
 
 .fd {
