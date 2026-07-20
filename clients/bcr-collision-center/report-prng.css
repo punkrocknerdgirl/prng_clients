@@ -54,6 +54,7 @@ body {
   display: flex !important;
   grid-template-columns: none !important;
   align-items: center;
+  padding-left: 10px;
 }
 .doc-header h1 {
   font-size: 22px;
