@@ -566,6 +566,10 @@ body {
   border-width: 2.5px !important;
 }
 
+.hbadge.period {
+  font-size: 14px;
+}
+
 .quote-price {
   border: 2px solid #2ca6a4 !important;
   background: #CEEDEC;
