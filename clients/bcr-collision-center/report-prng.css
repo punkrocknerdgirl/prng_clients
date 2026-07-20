@@ -497,8 +497,15 @@ body {
   gap: 16px;
 }
 
+.doc-header.quote-header .quote-header-copy {
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
 .quote-header-copy img {
   display: block !important;
+  margin-left: 0 !important;
   width: 160px;
   height: 160px;
   object-fit: contain;
