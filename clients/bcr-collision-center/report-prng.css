@@ -35,7 +35,7 @@ body {
 }
 
 .quote-header-copy img {
-  display: none;
+  display: none !important;
 }
 
 .quote-header-copy .header-copy-text {
