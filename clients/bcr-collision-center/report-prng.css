@@ -560,8 +560,10 @@ body {
 
 .hbadge,
 .nav-btn,
-.quote-price {
-  border-width: 2px !important;
+.quote-price,
+.rs-badge,
+.not-inc {
+  border-width: 2.5px !important;
 }
 
 .sc,
@@ -588,7 +590,9 @@ body {
 
 .rs-badge.review,
 .rs-badge.fixed-fee {
-  background: #b72f67;
+  background: #ffb2d6;
+  border-color: #ffb2d6;
+  color: #622e47;
 }
 
 .rs-badge.clean {
@@ -613,6 +617,10 @@ body {
 
 .footer {
   background: var(--main);
+}
+
+.footer .footer-link {
+  color: #ffb2d6 !important;
 }
 
 @media (max-width: 640px) {
