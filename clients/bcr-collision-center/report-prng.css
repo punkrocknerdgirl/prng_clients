@@ -524,6 +524,13 @@ body {
 .hbadge.period,
 .hbadge.preparer {
   font-size: 10px;
+  box-sizing: border-box;
+  min-height: 28px;
+  padding: 5px 12px;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  border-width: 2.5px !important;
 }
 
 .quote-price {
