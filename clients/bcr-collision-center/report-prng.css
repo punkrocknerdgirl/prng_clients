@@ -570,11 +570,11 @@ body {
 .quote-price-label,
 .quote-price-note,
 .quote-price-amount {
-  color: #2ca6a4;
+  color: #ffffff;
 }
 
 .quote-price * {
-  color: #2ca6a4 !important;
+  color: #ffffff !important;
 }
 
 .report-nav,
