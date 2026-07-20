@@ -511,7 +511,7 @@ body {
 
 .hbadge.period {
   background: #622e47 !important;
-  border: 2px solid #ffb2d6;
+  border: 2px solid #ffb2d6 !important;
   color: #ffffff !important;
 }
 
@@ -522,7 +522,7 @@ body {
 }
 
 .quote-price {
-  border: 2px solid #2ca6a4;
+  border: 2px solid #2ca6a4 !important;
   background: #bfe9e7;
   color: #2ca6a4;
 }
@@ -555,6 +555,12 @@ body {
   background: #622e47 !important;
   border: 2px solid #ffb2d6 !important;
   color: #ffffff !important;
+}
+
+.hbadge,
+.nav-btn,
+.quote-price {
+  border-width: 2px !important;
 }
 
 .sc,
