@@ -34,7 +34,8 @@
   padding: 18px 22px;
   border: 2px solid #ff4f9a;
   border-radius: 18px;
-  background: #35c9be;
+  background-color: #35c9be !important;
+  background-image: none !important;
   text-align: center;
   white-space: nowrap;
   box-sizing: border-box;
