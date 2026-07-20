@@ -491,8 +491,8 @@ body {
 
 .quote-header-copy img {
   display: block !important;
-  width: 84px;
-  height: 84px;
+  width: 104px;
+  height: 104px;
   object-fit: contain;
   flex: 0 0 auto;
 }
@@ -523,7 +523,7 @@ body {
 
 .quote-price {
   border: 2px solid #2ca6a4 !important;
-  background: #bfe9e7;
+  background: #cdeeed;
   color: #2ca6a4;
 }
 
@@ -596,13 +596,13 @@ body {
 }
 
 .rs-badge.clean {
-  background: #bfe9e7;
+  background: #cdeeed;
   border: 2px solid #2ca6a4;
   color: #2ca6a4;
 }
 
 .not-inc {
-  background: #bfe9e7;
+  background: #cdeeed;
   border: 2px solid #2ca6a4;
   color: #2ca6a4;
   font-size: 12.5px;
@@ -633,7 +633,7 @@ body {
     align-items: flex-start;
   }
   .quote-header-copy img {
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
   }
 }
