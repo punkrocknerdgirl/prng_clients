@@ -32,9 +32,9 @@
   justify-self: end;
   min-width: 170px;
   padding: 18px 22px;
-  border: 2px solid #ff4f9a;
+  border: 2px solid #246f6b;
   border-radius: 18px;
-  background-color: #35c9be !important;
+  background-color: #9be4de !important;
   background-image: none !important;
   text-align: center;
   white-space: nowrap;
@@ -43,7 +43,7 @@
 
 .quote-price-label {
   margin-bottom: 4px;
-  color: #ff4f9a;
+  color: #246f6b;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -51,17 +51,52 @@
 }
 
 .quote-price-amount {
-  color: #ff4f9a;
-  font-size: 34px;
+  color: #246f6b;
+  font-size: 30px;
   font-weight: 800;
   line-height: 1;
 }
 
 .quote-price-note {
   margin-top: 6px;
-  color: #ff4f9a;
+  color: #246f6b;
   font-size: 11px;
   font-weight: 700;
+}
+
+/* BCR navigation and period badge colors */
+.report-nav .nav-btn.active,
+.doc-header .hbadge.period {
+  background: #9be4de;
+  border: 1px solid #246f6b;
+  color: #503c52;
+}
+
+/* Softer BCR emphasis for section labels and action badges */
+.wrap .sec-label {
+  color: #f27eaa;
+}
+
+.wrap .rs-badge.issues {
+  background: #f27eaa;
+  border-color: #f27eaa;
+  color: #3f3f42;
+}
+
+.wrap .rs-badge.fixed-fee {
+  background: #f27eaa;
+  border-color: #f27eaa;
+  color: #ffffff;
+}
+
+.wrap .footer a.footer-link {
+  color: #7f8a8f !important;
+  text-decoration: none;
+}
+
+.wrap .footer a.footer-link:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
 }
 
 @media (max-width: 760px) {
