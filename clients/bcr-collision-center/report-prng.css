@@ -531,8 +531,13 @@ body {
   width: 100%;
   order: 3;
   margin-top: 8px;
+  padding: 5px 12px;
+  box-sizing: border-box;
+  background: #FFDDEF;
+  border: 2px solid #622e47;
+  border-radius: 18px;
   color: #622e47;
-  font-size: 10.75px;
+  font-size: 11px;
   white-space: nowrap;
   text-align: center;
 }
