@@ -26,10 +26,6 @@ body {
   align-items: center;
 }
 
-.quote-header::before {
-  display: none !important;
-}
-
 .quote-header-copy {
   display: flex;
   flex: 1;
@@ -39,10 +35,7 @@ body {
 }
 
 .quote-header-copy img {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-  flex: 0 0 auto;
+  display: none;
 }
 
 .quote-header-copy .header-copy-text {
@@ -104,8 +97,4 @@ body {
     align-items: flex-start;
   }
 
-  .quote-header-copy img {
-    width: 56px;
-    height: 56px;
-  }
 }
