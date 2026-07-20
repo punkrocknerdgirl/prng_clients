@@ -1,0 +1,107 @@
+@import url("report.css");
+
+:root {
+  --main: #503c52;
+  --accent: #d8849c;
+  --light: #f3dce4;
+  --lighter: #fbf3f6;
+  --palest: #fffafd;
+  --border: #dfb8c5;
+  --divider: #eed8df;
+  --flag: #503c52;
+  --ok: #246f6b;
+}
+
+body {
+  background: #f7f1f4;
+}
+
+.doc-header {
+  background: linear-gradient(135deg, var(--main), #6d536f);
+  border: 1px solid #3f2f41;
+  box-shadow: 0 10px 24px rgba(80, 60, 82, 0.14);
+}
+
+.quote-header {
+  align-items: center;
+}
+
+.quote-header-copy {
+  display: flex;
+  flex: 1;
+  min-width: 260px;
+  align-items: center;
+  gap: 16px;
+}
+
+.quote-header-copy img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.quote-header-copy .header-copy-text {
+  min-width: 0;
+}
+
+.hbadge.period {
+  background: #9be4de;
+  color: #244f4c;
+}
+
+.hbadge.preparer {
+  background: rgba(216, 132, 156, 0.3);
+  color: #fff;
+}
+
+.quote-price {
+  border: 2px solid #9be4de;
+  background: #dff6f3;
+  color: #3f3f42;
+}
+
+.quote-price-label,
+.quote-price-note {
+  color: #246f6b;
+}
+
+.sec-label {
+  color: var(--main);
+}
+
+.report-section {
+  border-color: var(--border);
+}
+
+.rs-header {
+  background: var(--light);
+}
+
+.rs-badge.review,
+.rs-badge.fixed-fee {
+  background: var(--accent);
+}
+
+.rs-badge.clean {
+  background: var(--ok);
+}
+
+.fd {
+  background: var(--accent);
+}
+
+.footer {
+  background: var(--main);
+}
+
+@media (max-width: 640px) {
+  .quote-header-copy {
+    align-items: flex-start;
+  }
+
+  .quote-header-copy img {
+    width: 56px;
+    height: 56px;
+  }
+}
