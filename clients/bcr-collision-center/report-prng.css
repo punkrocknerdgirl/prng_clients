@@ -537,7 +537,7 @@ body {
   border: 2.5px solid #622e47;
   border-radius: 18px;
   color: #622e47;
-  font-size: 11px;
+  font-size: 13px;
   white-space: nowrap;
   text-align: center;
 }
@@ -556,7 +556,7 @@ body {
 
 .hbadge.period,
 .hbadge.preparer {
-  font-size: 14px;
+  font-size: 13px;
   box-sizing: border-box;
   min-height: 28px;
   padding: 5px 12px;
