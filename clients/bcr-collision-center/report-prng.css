@@ -630,6 +630,10 @@ body {
   border-width: 2.5px !important;
 }
 
+.quote-price {
+  border-width: 3.5px !important;
+}
+
 .sc,
 .sc.ok,
 .sc.flag {
