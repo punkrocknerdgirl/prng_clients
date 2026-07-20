@@ -558,6 +558,18 @@ body {
   color: #ffffff !important;
 }
 
+.nav-btn:not(.active),
+.nav-btn.secondary:not(.active) {
+  background: #a5788f !important;
+  color: #ffffff !important;
+}
+
+.nav-btn:not(.active):hover,
+.nav-btn.secondary:not(.active):hover {
+  background: #c59cb1 !important;
+  color: #622e47 !important;
+}
+
 .hbadge,
 .nav-btn,
 .quote-price,
