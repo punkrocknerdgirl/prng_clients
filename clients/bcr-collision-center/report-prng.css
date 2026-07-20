@@ -528,11 +528,12 @@ body {
 }
 
 .quote-price-label,
-.quote-price-note {
+.quote-price-note,
+.quote-price-amount {
   color: #2ca6a4;
 }
 
-.quote-price-amount {
+.quote-price * {
   color: #2ca6a4 !important;
 }
 
@@ -569,9 +570,8 @@ body {
   border-top-color: #b72f67 !important;
 }
 
-.sc.ok .sv,
-.sc.flag .sv {
-  color: #b72f67 !important;
+.sc .sv {
+  color: #2ca6a4 !important;
 }
 
 .sec-label {
