@@ -236,7 +236,7 @@
       section.appendChild(headerTemplate.cloneNode(true));
 
       [...wrap.children].forEach((child) => {
-        if (!child.classList.contains("report-nav")) {
+        if (!child.classList.contains("report-nav") && !child.classList.contains("doc-header")) {
           section.appendChild(child.cloneNode(true));
         }
       });
