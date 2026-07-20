@@ -548,6 +548,17 @@ body {
   border-color: #622e47 !important;
 }
 
+.report-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px !important;
+}
+
+.report-nav-actions .nav-btn {
+  margin: 0 !important;
+  padding: 8px 12px !important;
+}
+
 .nav-btn.active {
   background: #622e47 !important;
   border: 2px solid #ffb2d6 !important;
