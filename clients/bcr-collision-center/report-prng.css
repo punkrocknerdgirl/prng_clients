@@ -510,8 +510,9 @@ body {
 }
 
 .hbadge.period {
-  background: #c59cb1;
-  color: #622e47;
+  background: #622e47 !important;
+  border: 2px solid #ffb2d6;
+  color: #ffffff !important;
 }
 
 .hbadge.preparer {
@@ -520,14 +521,14 @@ body {
 }
 
 .quote-price {
-  border: 2px solid #b72f67;
-  background: #ffb2d6;
-  color: #622e47;
+  border: 2px solid #ffb2d6;
+  background: #622e47;
+  color: #ffffff;
 }
 
 .quote-price-label,
 .quote-price-note {
-  color: #622e47;
+  color: #ffffff;
 }
 
 .report-nav,
@@ -537,14 +538,18 @@ body {
 }
 
 .nav-btn.active {
-  background: #c59cb1 !important;
-  color: #622e47 !important;
+  background: #622e47 !important;
+  border: 2px solid #ffb2d6 !important;
+  color: #ffffff !important;
 }
 
+.nav-btn,
+.nav-btn.secondary,
 .nav-btn:hover,
 .nav-btn.secondary:hover {
-  background: #ffb2d6 !important;
-  color: #622e47 !important;
+  background: #622e47 !important;
+  border: 2px solid #ffb2d6 !important;
+  color: #ffffff !important;
 }
 
 .sc,
