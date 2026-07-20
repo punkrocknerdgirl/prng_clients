@@ -14,3 +14,69 @@
 
 .doc-header.quote-header .quote-header-copy h1,
 .doc-header.quote-header .quote-header-copy .hsub,
+.doc-header.quote-header .quote-header-copy .header-badges {
+  grid-column: auto;
+}
+
+.doc-header.quote-header .header-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.doc-header.quote-header .quote-price {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  align-self: center;
+  justify-self: end;
+  min-width: 170px;
+  padding: 18px 22px;
+  border: 2px solid var(--accent);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.quote-price-label {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quote-price-amount {
+  color: var(--accent);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.quote-price-note {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 760px) {
+  .doc-header.quote-header {
+    grid-template-columns: 112px minmax(0, 1fr);
+  }
+
+  .doc-header.quote-header .quote-price {
+    grid-column: 2;
+    grid-row: auto;
+    justify-self: start;
+    min-width: 160px;
+    margin-top: 10px;
+    padding: 14px 18px;
+  }
+
+  .quote-price-amount {
+    font-size: 30px;
+  }
+}
