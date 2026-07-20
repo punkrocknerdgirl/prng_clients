@@ -98,6 +98,24 @@
 
     .print-page {
       page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .print-page:not(:first-child) {
+      page-break-before: always;
+      break-before: page;
+    }
+
+    .print-page .report-section,
+    .print-page .scope-card,
+    .print-page .not-inc,
+    .print-page .fee-det,
+    .print-page .fdc,
+    .print-page .quote-price {
+      page-break-inside: avoid;
+      break-inside: avoid;
     }
 
     .print-page .report-section,
