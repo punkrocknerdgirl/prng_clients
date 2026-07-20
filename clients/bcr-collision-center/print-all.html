@@ -18,6 +18,63 @@
     text-align: center;
   }
 
+  .pdf-header {
+    max-width: 860px;
+    margin: 24px auto 28px;
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    align-items: center;
+    gap: 22px;
+    background: #ffffff;
+    border: 2px solid #503c52;
+    border-radius: 12px;
+  }
+
+  .pdf-header img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+  }
+
+  .pdf-header h1 {
+    margin: 0 0 8px;
+    color: #503c52;
+    font-size: 24px;
+    line-height: 1.15;
+  }
+
+  .pdf-header p {
+    margin: 4px 0;
+    color: #5f6266;
+    font-size: 13px;
+  }
+
+  .pdf-header-amount {
+    min-width: 190px;
+    padding: 16px 20px;
+    border: 2px solid #246f6b;
+    border-radius: 16px;
+    background: #9be4de;
+    color: #3f3f42;
+    text-align: center;
+  }
+
+  .pdf-header-amount strong {
+    display: block;
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .pdf-header-amount span {
+    display: block;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
   .print-page {
     page-break-after: always;
   }
@@ -41,11 +98,28 @@
     .print-page {
       page-break-after: always;
     }
+
+    .pdf-header {
+      margin-top: 0;
+      page-break-after: always;
+    }
   }
 </style>
 </head>
 <body>
 <div class="print-status">Preparing all three BCR pages for printing…</div>
+<header class="pdf-header">
+  <img src="../../assets/logo_gbs.png" alt="Goldsmith Business Solutions logo">
+  <div>
+    <h1>QuickBooks Clean-Up Estimate</h1>
+    <p><strong>Prepared for:</strong> BCR Collision Center, LLC.</p>
+    <p><strong>Date:</strong> July 19, 2026 · <strong>Period:</strong> January 1, 2021 – July 31, 2026</p>
+  </div>
+  <div class="pdf-header-amount">
+    <strong>$13,500</strong>
+    <span>Cleanup Estimate · Fixed fee</span>
+  </div>
+</header>
 <main id="print-content"></main>
 <script>
   const pages = [
@@ -54,13 +128,41 @@
     "documents-required.html"
   ];
 
-  async function buildPrintDocument() {
-    const target = document.getElementById("print-content");
-    const loadedPages = await Promise.all(pages.map(async (page) => {
+  function loadLocalPage(page) {
+    return new Promise((resolve, reject) => {
+      const frame = document.createElement("iframe");
+      frame.hidden = true;
+      frame.onload = () => {
+        try {
+          resolve(new DOMParser().parseFromString(frame.contentDocument.documentElement.outerHTML, "text/html"));
+        } catch (error) {
+          reject(error);
+        } finally {
+          frame.remove();
+        }
+      };
+      frame.onerror = () => {
+        frame.remove();
+        reject(new Error(`Could not load ${page}`));
+      };
+      frame.src = page;
+      document.body.appendChild(frame);
+    });
+  }
+
+  async function loadPage(page) {
+    try {
       const response = await fetch(page);
       if (!response.ok) throw new Error(`Could not load ${page}`);
       return new DOMParser().parseFromString(await response.text(), "text/html");
-    }));
+    } catch (error) {
+      return loadLocalPage(page);
+    }
+  }
+
+  async function buildPrintDocument() {
+    const target = document.getElementById("print-content");
+    const loadedPages = await Promise.all(pages.map(loadPage));
 
     loadedPages.forEach((source, index) => {
       const wrap = source.querySelector(".wrap");
