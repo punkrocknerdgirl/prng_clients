@@ -510,9 +510,9 @@ body {
 }
 
 .hbadge.period {
-  background: #622e47 !important;
+  background: #FFDDEF !important;
   border: 2px solid #ffb2d6 !important;
-  color: #ffffff !important;
+  color: #622e47 !important;
 }
 
 .hbadge.preparer {
@@ -523,7 +523,7 @@ body {
 
 .hbadge.period,
 .hbadge.preparer {
-  font-size: 10px;
+  font-size: 10.5px;
   box-sizing: border-box;
   min-height: 28px;
   padding: 5px 12px;
@@ -625,7 +625,7 @@ body {
 
 .rs-badge.review,
 .rs-badge.fixed-fee {
-  background: #ffb2d6;
+  background: #FFDDEF;
   border-color: #ffb2d6;
   color: #622e47;
 }
