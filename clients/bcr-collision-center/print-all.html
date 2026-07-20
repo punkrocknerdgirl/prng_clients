@@ -86,7 +86,8 @@
   @media print {
     .print-status,
     .report-nav,
-    .footer {
+    .footer,
+    .print-page > .doc-header {
       display: none !important;
     }
 
@@ -100,8 +101,8 @@
     }
 
     .pdf-header {
-      margin-top: 0;
-      page-break-after: always;
+      margin: 0 auto 14px;
+      page-break-after: avoid;
     }
   }
 </style>
@@ -162,12 +163,16 @@
 
   async function buildPrintDocument() {
     const target = document.getElementById("print-content");
+    const headerTemplate = document.querySelector(".pdf-header");
+    headerTemplate.remove();
     const loadedPages = await Promise.all(pages.map(loadPage));
 
     loadedPages.forEach((source, index) => {
       const wrap = source.querySelector(".wrap");
       const section = document.createElement("section");
       section.className = "print-page wrap";
+
+      section.appendChild(headerTemplate.cloneNode(true));
 
       [...wrap.children].forEach((child) => {
         if (!child.classList.contains("report-nav")) {
