@@ -58,13 +58,13 @@ body {
   padding-right: 24px !important;
 }
 .doc-header h1 {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 4px;
 }
 .doc-header .hsub {
-  font-size: 12px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.68);
 }
 .header-badges {
@@ -537,7 +537,7 @@ body {
   border: 2.5px solid #622e47;
   border-radius: 18px;
   color: #622e47;
-  font-size: 13px;
+  font-size: 15px;
   white-space: nowrap;
   text-align: center;
 }
@@ -556,7 +556,7 @@ body {
 
 .hbadge.period,
 .hbadge.preparer {
-  font-size: 13px;
+  font-size: 15px;
   box-sizing: border-box;
   min-height: 28px;
   padding: 5px 12px;
