@@ -517,13 +517,13 @@ body {
 
 .hbadge.period {
   background: #622e47 !important;
-  border: 2px solid #FFDDEF !important;
+  border: 2px solid #ffb2d6 !important;
   color: #ffffff !important;
 }
 
 .hbadge.preparer {
   background: #FFDDEF;
-  border: 2px solid #632E47;
+  border: 2px solid #ffb2d6;
   color: #622e47;
 }
 
