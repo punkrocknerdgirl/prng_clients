@@ -491,8 +491,8 @@ body {
 
 .quote-header-copy img {
   display: block !important;
-  width: 104px;
-  height: 104px;
+  width: 140px;
+  height: 140px;
   object-fit: contain;
   flex: 0 0 auto;
 }
@@ -645,7 +645,7 @@ body {
     align-items: flex-start;
   }
   .quote-header-copy img {
-    width: 80px;
-    height: 80px;
+    width: 96px;
+    height: 96px;
   }
 }
