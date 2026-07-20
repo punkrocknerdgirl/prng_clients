@@ -49,6 +49,12 @@ body {
   gap: 16px;
   flex-wrap: wrap;
 }
+
+.doc-header.quote-header {
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: center;
+}
 .doc-header h1 {
   font-size: 22px;
   font-weight: 700;
@@ -491,8 +497,8 @@ body {
 
 .quote-header-copy img {
   display: block !important;
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   object-fit: contain;
   flex: 0 0 auto;
 }
@@ -668,7 +674,7 @@ body {
     align-items: flex-start;
   }
   .quote-header-copy img {
-    width: 96px;
-    height: 96px;
+    width: 104px;
+    height: 104px;
   }
 }
