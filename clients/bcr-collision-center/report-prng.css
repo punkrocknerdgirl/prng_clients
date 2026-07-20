@@ -1,25 +1,33 @@
 @import url("report.css");
 
 :root {
-  --main: #503c52;
-  --accent: #d8849c;
-  --light: #f3dce4;
-  --lighter: #fbf3f6;
-  --palest: #fffafd;
-  --border: #dfb8c5;
-  --divider: #eed8df;
-  --flag: #503c52;
-  --ok: #246f6b;
+  --main: #2f75b5;
+  --accent: #2ca6a4;
+  --light: #dcecf8;
+  --lighter: #f4f9fd;
+  --palest: #f8fbfe;
+  --card: #ffffff;
+  --text: #263746;
+  --muted: #6d7882;
+  --border: #b9d3e8;
+  --divider: #d9e7f2;
+  --flag: #6b5b95;
+  --ok: #60bd68;
 }
 
 body {
-  background: #f7f1f4;
+  background: #f4f8fc;
+  color: var(--text);
+}
+
+.quote-header::before {
+  display: none !important;
 }
 
 .doc-header {
-  background: linear-gradient(135deg, var(--main), #6d536f);
-  border: 1px solid #3f2f41;
-  box-shadow: 0 10px 24px rgba(80, 60, 82, 0.14);
+  background: linear-gradient(135deg, #2f75b5, #6b5b95);
+  border: 1px solid #255f95;
+  box-shadow: 0 10px 24px rgba(47, 117, 181, 0.16);
 }
 
 .quote-header {
@@ -35,7 +43,11 @@ body {
 }
 
 .quote-header-copy img {
-  display: none !important;
+  display: block !important;
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .quote-header-copy .header-copy-text {
@@ -43,24 +55,24 @@ body {
 }
 
 .hbadge.period {
-  background: #9be4de;
-  color: #244f4c;
+  background: #bfe9e7;
+  color: #176f6d;
 }
 
 .hbadge.preparer {
-  background: rgba(216, 132, 156, 0.3);
+  background: rgba(142, 124, 195, 0.42);
   color: #fff;
 }
 
 .quote-price {
-  border: 2px solid #9be4de;
-  background: #dff6f3;
-  color: #3f3f42;
+  border: 2px solid #2ca6a4;
+  background: #d8f2f0;
+  color: #294651;
 }
 
 .quote-price-label,
 .quote-price-note {
-  color: #246f6b;
+  color: #197c7a;
 }
 
 .sec-label {
@@ -77,15 +89,15 @@ body {
 
 .rs-badge.review,
 .rs-badge.fixed-fee {
-  background: var(--accent);
+  background: #f39c12;
 }
 
 .rs-badge.clean {
-  background: var(--ok);
+  background: #60bd68;
 }
 
 .fd {
-  background: var(--accent);
+  background: #2ca6a4;
 }
 
 .footer {
@@ -96,5 +108,8 @@ body {
   .quote-header-copy {
     align-items: flex-start;
   }
-
+  .quote-header-copy img {
+    width: 64px;
+    height: 64px;
+  }
 }
