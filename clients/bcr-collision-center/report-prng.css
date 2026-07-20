@@ -521,14 +521,18 @@ body {
 }
 
 .quote-price {
-  border: 2px solid #ffb2d6;
-  background: #622e47;
-  color: #ffffff;
+  border: 2px solid #2ca6a4;
+  background: #bfe9e7;
+  color: #2ca6a4;
 }
 
 .quote-price-label,
 .quote-price-note {
-  color: #ffffff;
+  color: #2ca6a4;
+}
+
+.quote-price-amount {
+  color: #2ca6a4 !important;
 }
 
 .report-nav,
