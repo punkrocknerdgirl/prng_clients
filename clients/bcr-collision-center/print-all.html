@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCR QuickBooks Clean-Up Estimate</title>
+<link rel="stylesheet" href="report.css">
+<link rel="stylesheet" href="nav.css?v=20260719-9">
+<style>
+  .print-status {
+    max-width: 860px;
+    margin: 24px auto;
+    padding: 16px 20px;
+    color: #503c52;
+    background: #9be4de;
+    border: 2px solid #246f6b;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .print-page {
+    page-break-after: always;
+  }
+
+  .print-page:last-child {
+    page-break-after: auto;
+  }
+
+  @media print {
+    .print-status,
+    .report-nav,
+    .footer {
+      display: none !important;
+    }
+
+    .wrap {
+      max-width: none;
+      padding-top: 0;
+    }
+
+    .print-page {
+      page-break-after: always;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="print-status">Preparing all three BCR pages for printing…</div>
+<main id="print-content"></main>
+<script>
+  const pages = [
+    "index.html",
+    "details-13500.html",
+    "documents-required.html"
+  ];
+
+  async function buildPrintDocument() {
+    const target = document.getElementById("print-content");
+    const loadedPages = await Promise.all(pages.map(async (page) => {
+      const response = await fetch(page);
+      if (!response.ok) throw new Error(`Could not load ${page}`);
+      return new DOMParser().parseFromString(await response.text(), "text/html");
+    }));
+
+    loadedPages.forEach((source, index) => {
+      const wrap = source.querySelector(".wrap");
+      const section = document.createElement("section");
+      section.className = "print-page wrap";
+
+      [...wrap.children].forEach((child) => {
+        if (!child.classList.contains("report-nav")) {
+          section.appendChild(child.cloneNode(true));
+        }
+      });
+
+      section.setAttribute("aria-label", `BCR page ${index + 1}`);
+      target.appendChild(section);
+    });
+
+    document.querySelector(".print-status").remove();
+    window.setTimeout(() => window.print(), 250);
+  }
+
+  buildPrintDocument().catch((error) => {
+    document.querySelector(".print-status").textContent = `Print preparation failed: ${error.message}`;
+  });
+</script>
+</body>
+</html>
