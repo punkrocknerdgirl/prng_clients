@@ -24,8 +24,13 @@ body {
   display: none !important;
 }
 
+.quote-header::after {
+  display: none !important;
+}
+
 .doc-header {
   background: linear-gradient(135deg, #2f75b5, #6b5b95);
+  background-image: linear-gradient(135deg, #2f75b5, #6b5b95) !important;
   border: 1px solid #255f95;
   box-shadow: 0 10px 24px rgba(47, 117, 181, 0.16);
 }
