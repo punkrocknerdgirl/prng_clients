@@ -506,8 +506,8 @@ body {
 .quote-header-copy img {
   display: block !important;
   margin-left: 0 !important;
-  width: 160px;
-  height: 160px;
+  width: 145px;
+  height: 145px;
   object-fit: contain;
   flex: 0 0 auto;
 }
@@ -695,7 +695,7 @@ body {
     align-items: flex-start;
   }
   .quote-header-copy img {
-    width: 104px;
-    height: 104px;
+    width: 96px;
+    height: 96px;
   }
 }
