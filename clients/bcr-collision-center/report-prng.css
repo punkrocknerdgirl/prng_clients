@@ -469,10 +469,10 @@ body {
 }
 
 .doc-header {
-  background: linear-gradient(135deg, #622e47, #a5788f);
-  background-image: linear-gradient(135deg, #622e47, #a5788f) !important;
-  border: 1px solid #622e47;
-  box-shadow: 0 10px 24px rgba(98, 46, 71, 0.16);
+  background: #ffffff;
+  background-image: none !important;
+  border: 2px solid #622e47;
+  box-shadow: 0 8px 20px rgba(98, 46, 71, 0.12);
 }
 
 .quote-header {
@@ -480,10 +480,12 @@ body {
 }
 
 .quote-header-copy {
-  display: flex;
+  display: flex !important;
   flex: 1;
   min-width: 260px;
   align-items: center;
+  flex-direction: row !important;
+  justify-content: flex-start;
   gap: 16px;
 }
 
@@ -497,6 +499,14 @@ body {
 
 .quote-header-copy .header-copy-text {
   min-width: 0;
+}
+
+.quote-header h1 {
+  color: #622e47;
+}
+
+.quote-header .hsub {
+  color: #656565;
 }
 
 .hbadge.period {
@@ -518,6 +528,34 @@ body {
 .quote-price-label,
 .quote-price-note {
   color: #622e47;
+}
+
+.report-nav,
+.nav-btn,
+.nav-btn.secondary {
+  border-color: #622e47 !important;
+}
+
+.nav-btn.active {
+  background: #c59cb1 !important;
+  color: #622e47 !important;
+}
+
+.nav-btn:hover,
+.nav-btn.secondary:hover {
+  background: #ffb2d6 !important;
+  color: #622e47 !important;
+}
+
+.sc,
+.sc.ok,
+.sc.flag {
+  border-top-color: #b72f67 !important;
+}
+
+.sc.ok .sv,
+.sc.flag .sv {
+  color: #b72f67 !important;
 }
 
 .sec-label {
