@@ -540,7 +540,7 @@ body {
   font-size: inherit;
 }
 .documents-link a {
-  color: var(--accent);
+  color: #2ca6a4;
   font-weight: 700;
 }
 
