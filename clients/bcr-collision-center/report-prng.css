@@ -546,14 +546,14 @@ body {
 
 @media print {
   @page {
-    margin: 0.25in;
+    margin: 0.15in;
   }
   .report-nav,
   .footer {
     display: none !important;
   }
   .wrap {
-    padding: 0 8px 10px;
+    padding: 0 4px 4px;
   }
   .doc-header.quote-header {
     padding: 4px 8px 4px !important;
@@ -585,49 +585,49 @@ body {
     padding: 3px 6px;
   }
   .intro {
-    padding: 7px 10px;
-    margin-bottom: 9px;
-    font-size: 10px;
-  }
-  .sec-label {
-    margin: 8px 0 4px;
-    font-size: 8px;
-  }
-  .stats {
-    gap: 5px;
+    padding: 5px 8px;
     margin-bottom: 6px;
-  }
-  .sc {
-    padding: 6px 8px;
-  }
-  .sc .sl {
-    font-size: 8px;
-    margin-bottom: 2px;
-  }
-  .sc .sv {
-    font-size: 15px;
-  }
-  .sc .ss {
     font-size: 9px;
   }
+  .sec-label {
+    margin: 5px 0 3px;
+    font-size: 7px;
+  }
+  .stats {
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .sc {
+    padding: 4px 6px;
+  }
+  .sc .sl {
+    font-size: 7px;
+    margin-bottom: 1px;
+  }
+  .sc .sv {
+    font-size: 13px;
+  }
+  .sc .ss {
+    font-size: 8px;
+  }
   .report-section {
-    margin-bottom: 7px;
+    margin-bottom: 5px;
   }
   .rs-header {
-    padding: 6px 10px;
+    padding: 4px 8px;
   }
   .rs-header h3 {
     font-size: 9px;
   }
   .rs-body {
-    padding: 7px 10px;
+    padding: 5px 8px;
   }
   .fee-det {
-    gap: 5px;
-    margin-bottom: 7px;
+    gap: 4px;
+    margin-bottom: 4px;
   }
   .fdc {
-    padding: 6px 8px;
+    padding: 4px 6px;
   }
   .fdl {
     font-size: 8px;
@@ -636,7 +636,7 @@ body {
     font-size: 10px;
   }
   .payment-table {
-    margin-bottom: 7px;
+    margin-bottom: 4px;
   }
   .payment-table caption {
     padding-bottom: 3px;
@@ -653,14 +653,14 @@ body {
     font-size: 8px;
   }
   .not-inc {
-    padding: 6px 9px;
-    margin-bottom: 8px;
-    font-size: 9px;
+    padding: 4px 7px;
+    margin-bottom: 5px;
+    font-size: 8px;
   }
   .disc {
-    padding-top: 6px;
-    margin-top: 4px;
-    font-size: 8px;
+    padding-top: 4px;
+    margin-top: 2px;
+    font-size: 7px;
   }
 }
 
