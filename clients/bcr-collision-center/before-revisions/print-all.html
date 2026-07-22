@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCR QuickBooks Clean-Up Estimate</title>
+<link rel="stylesheet" href="nav.css?v=20260719-9">
+<link rel="stylesheet" href="report-prng.css?v=20260720-9">
+<style>
+  .print-status {
+    max-width: 860px;
+    margin: 24px auto;
+    padding: 16px 20px;
+    color: #622e47;
+    background: #FFF3FA;
+    border: 2px solid #F27EAA;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .pdf-header {
+    max-width: 860px;
+    margin: 16px auto 20px;
+    padding: 4px 10px;
+    display: grid;
+    grid-template-columns: 42px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 2px solid #622e47;
+    border-radius: 8px;
+  }
+
+  .pdf-header img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+  }
+
+  .pdf-header h1 {
+    margin: 0 0 2px;
+    color: #622e47;
+    font-size: 13px;
+    line-height: 1.15;
+  }
+
+  .pdf-header p {
+    margin: 2px 0;
+    color: #656565;
+    font-size: 13px;
+  }
+
+  .pdf-header-amount {
+    min-width: 112px;
+    padding: 5px 8px;
+    border: 2px solid #2ca6a4;
+    border-radius: 10px;
+    background: #CEEDEC;
+    color: #2ca6a4;
+    text-align: center;
+  }
+
+  .pdf-header-amount strong {
+    display: block;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .pdf-header-amount span {
+    display: block;
+    margin-top: 2px;
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .print-page {
+    page-break-after: always;
+  }
+
+  .print-page:last-child {
+    page-break-after: auto;
+  }
+
+  @media print {
+    .print-status,
+    .report-nav,
+    .footer,
+    .print-page > .doc-header {
+      display: none !important;
+    }
+
+    .wrap {
+      max-width: none;
+      padding-top: 0;
+    }
+
+    .print-page {
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .print-page:not(:first-child) {
+      page-break-before: always;
+      break-before: page;
+    }
+
+    .print-page .report-section,
+    .print-page .scope-card,
+    .print-page .not-inc,
+    .print-page .fee-det,
+    .print-page .fdc,
+    .print-page .quote-price {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .print-page .report-section,
+    .print-page .scope-card,
+    .print-page .fdc,
+    .print-page .not-inc,
+    .print-page .fee-bar {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .print-page .report-section {
+      margin-bottom: 12px;
+    }
+
+    .print-page .rs-header {
+      background: transparent;
+      padding: 6px 0 3px;
+    }
+
+    .print-page .rs-body,
+    .print-page .scope-card {
+      padding: 4px 0;
+    }
+
+    .print-page .item-list,
+    .print-page .scope-card ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    .print-page .item-list li,
+    .print-page .scope-card ul li {
+      padding: 3px 0;
+      border-bottom: 0;
+    }
+
+    .print-page .item-list li::before,
+    .print-page .scope-card ul li::before {
+      content: none;
+    }
+
+    .print-page .fee-bar {
+      padding: 10px 0;
+      margin: 12px 0 8px;
+    }
+
+    .print-page .fee-det {
+      gap: 14px;
+    }
+
+    .print-page .not-inc {
+      padding: 6px 0;
+    }
+
+    .print-page .disc {
+      border-top: 0;
+      padding-top: 4px;
+    }
+
+    .pdf-header {
+      margin: 0 auto 8px;
+      page-break-after: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="print-status">Preparing all three BCR pages for printing…</div>
+<header class="pdf-header">
+  <img src="prng-full-logo.png" alt="Punk Rock Nerd Girl bookkeeping services logo">
+  <div>
+    <h1>QuickBooks Clean-Up Estimate</h1>
+    <p><strong>Client:</strong> BCR Collision Repair, LLC.</p>
+    <p><strong>Date:</strong> July 19, 2026 · <strong>Period:</strong> January 1, 2021 – July 31, 2026</p>
+    <p>Prepared on July 19, 2026 by PRNG for Goldsmith Business Solutions</p>
+  </div>
+  <div class="pdf-header-amount">
+    <strong>$13,500</strong>
+    <span>Cleanup Estimate · Fixed fee</span>
+  </div>
+</header>
+<main id="print-content"></main>
+<script>
+  const pages = [
+    "index.html",
+    "details-13500.html",
+    "documents-required.html"
+  ];
+
+  function loadLocalPage(page) {
+    return new Promise((resolve, reject) => {
+      const frame = document.createElement("iframe");
+      frame.hidden = true;
+      frame.onload = () => {
+        try {
+          resolve(new DOMParser().parseFromString(frame.contentDocument.documentElement.outerHTML, "text/html"));
+        } catch (error) {
+          reject(error);
+        } finally {
+          frame.remove();
+        }
+      };
+      frame.onerror = () => {
+        frame.remove();
+        reject(new Error(`Could not load ${page}`));
+      };
+      frame.src = page;
+      document.body.appendChild(frame);
+    });
+  }
+
+  async function loadPage(page) {
+    try {
+      const response = await fetch(page);
+      if (!response.ok) throw new Error(`Could not load ${page}`);
+      return new DOMParser().parseFromString(await response.text(), "text/html");
+    } catch (error) {
+      return loadLocalPage(page);
+    }
+  }
+
+  async function buildPrintDocument() {
+    const target = document.getElementById("print-content");
+    const headerTemplate = document.querySelector(".pdf-header");
+    headerTemplate.remove();
+    const loadedPages = await Promise.all(pages.map(loadPage));
+
+    loadedPages.forEach((source, index) => {
+      const wrap = source.querySelector(".wrap");
+      const section = document.createElement("section");
+      section.className = "print-page wrap";
+
+      section.appendChild(headerTemplate.cloneNode(true));
+
+      [...wrap.children].forEach((child) => {
+        if (!child.classList.contains("report-nav") && !child.classList.contains("doc-header")) {
+          section.appendChild(child.cloneNode(true));
+        }
+      });
+
+      section.setAttribute("aria-label", `BCR page ${index + 1}`);
+      target.appendChild(section);
+    });
+
+    document.querySelector(".print-status").remove();
+    window.setTimeout(() => window.print(), 250);
+  }
+
+  buildPrintDocument().catch((error) => {
+    document.querySelector(".print-status").textContent = `Print preparation failed: ${error.message}`;
+  });
+</script>
+</body>
+</html>
