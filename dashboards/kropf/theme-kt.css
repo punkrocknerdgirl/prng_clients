@@ -1,0 +1,39 @@
+/* ============================================================
+   THEME — KROPF TRANSFER LLC
+   This is the ONLY file that should differ between clients.
+   Palette: steel + hauling-safety orange/amber, dark "shop floor"
+   background. Everything below is a variable — layout.css never
+   hardcodes a color or font, so re-skinning a new client means
+   copying this file and changing the values.
+   ============================================================ */
+
+:root {
+  /* ---- Surfaces ---- */
+  --color-bg: #14171A;
+  --color-surface: #1E2226;
+  --color-surface-alt: #262B30;
+  --color-border: #333A40;
+
+  /* ---- Text ---- */
+  --color-text: #ECEDEE;
+  --color-text-muted: #9BA3AB;
+
+  /* ---- Brand accents ---- */
+  --color-primary: #E8622C;     /* hauling-safety orange — revenue, primary line */
+  --color-secondary: #F2B705;   /* caution amber — net income, secondary accent */
+  --color-positive: #6FAE8B;    /* moss green — gains, current AR */
+  --color-negative: #D1495B;    /* rust red — declines, aged AR */
+  --color-status: #6FAE8B;      /* stamp color when Published; swap to muted gray for Draft */
+
+  /* ---- Type ---- */
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* ---- Aging bucket colors (Current → 90+) ---- */
+  --aging-current: #6FAE8B;
+  --aging-30: #A7C97A;
+  --aging-60: #F2B705;
+  --aging-90: #E8622C;
+  --aging-90plus: #D1495B;
+}

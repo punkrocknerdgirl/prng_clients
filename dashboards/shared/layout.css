@@ -1,0 +1,355 @@
+/* ============================================================
+   LAYOUT.CSS — structural stylesheet, shared across ALL clients
+   Do not put colors, fonts, or logos in this file.
+   Client identity lives entirely in theme-[client].css
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dash {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+/* ---------- Eyebrow / label typography ---------- */
+.eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+h1, h2, h3 { font-family: var(--font-display); margin: 0; }
+
+/* ============================================================
+   TICKET-STUB HEADER
+   ============================================================ */
+.ticket-header {
+  position: relative;
+  padding: 40px 32px 28px;
+  margin: 0 -24px 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  border-bottom: 2px dashed var(--color-border);
+}
+
+.ticket-header::before,
+.ticket-header::after {
+  content: "";
+  position: absolute;
+  bottom: -11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-page-bg, var(--color-bg));
+}
+.ticket-header::before { left: -11px; }
+.ticket-header::after { right: -11px; }
+
+.ticket-header__id {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ticket-header__client {
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.ticket-header__meta {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.ticket-header__meta span b {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ---------- Freshness stamp ---------- */
+.stamp {
+  border: 3px solid var(--color-status);
+  color: var(--color-status);
+  border-radius: 10px;
+  padding: 10px 18px;
+  transform: rotate(-5deg);
+  text-align: center;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  opacity: 0.92;
+  flex-shrink: 0;
+}
+.stamp__status { font-size: 1.05rem; font-weight: 700; line-height: 1.1; }
+.stamp__sub {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  margin-top: 4px;
+  color: var(--color-status);
+  opacity: 0.85;
+}
+
+/* ============================================================
+   METRIC CARD GRID
+   ============================================================ */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 20px 20px 16px;
+}
+
+.metric-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.metric-card__label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.metric-card__value {
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 2px 0 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  line-height: 1.4;
+}
+.pill--up   { background: color-mix(in srgb, var(--color-positive) 16%, transparent); color: var(--color-positive); }
+.pill--down { background: color-mix(in srgb, var(--color-negative) 16%, transparent); color: var(--color-negative); }
+.pill--flat { background: color-mix(in srgb, var(--color-text-muted) 16%, transparent); color: var(--color-text-muted); }
+
+.sparkline { width: 100%; height: 34px; display: block; margin-top: 6px; }
+
+/* ============================================================
+   SECTION / PANEL SHELL (used by trend chart, AR aging, etc.)
+   ============================================================ */
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 24px 28px 28px;
+  margin-bottom: 20px;
+}
+
+.panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.panel__title { font-size: 1.1rem; font-weight: 600; }
+.panel__hint { font-size: 0.82rem; color: var(--color-text-muted); }
+
+/* ---------- Trend chart ---------- */
+.trend-chart { width: 100%; height: 240px; display: block; }
+.trend-chart .grid-line { stroke: var(--color-border); stroke-width: 1; }
+.trend-chart .axis-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--color-text-muted);
+}
+.trend-chart .line-revenue { fill: none; stroke: var(--color-primary); stroke-width: 2.5; }
+.trend-chart .line-netincome { fill: none; stroke: var(--color-secondary); stroke-width: 2.5; stroke-dasharray: 5 4; }
+.trend-chart .area-revenue { fill: var(--color-primary); opacity: 0.08; }
+.trend-chart .dot { r: 3.5; }
+.trend-chart .dot-revenue { fill: var(--color-primary); }
+.trend-chart .dot-netincome { fill: var(--color-secondary); }
+
+.legend {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+.legend__item { display: flex; align-items: center; gap: 7px; }
+.legend__swatch { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.legend__swatch--dashed {
+  background: repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 9px);
+}
+
+/* ---------- AR Aging module ---------- */
+.aging-bar {
+  display: flex;
+  width: 100%;
+  height: 34px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  border: 1px solid var(--color-border);
+}
+.aging-bar__seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  min-width: 2px;
+}
+
+.aging-legend {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.aging-legend__item {
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+}
+.aging-legend__dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  display: inline-block; margin-right: 6px;
+}
+.aging-legend__label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+.aging-legend__value {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.aging-legend__pct {
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ---------- Footer ---------- */
+.dash-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+.dash-footer__sample {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border: 1px dashed var(--color-text-muted);
+  border-radius: 999px;
+}
+
+/* ============================================================
+   LOADING STATE (skeleton) — used before live data resolves
+   ============================================================ */
+.is-loading .metric-card__value,
+.is-loading .sparkline,
+.is-loading .trend-chart,
+.is-loading .aging-bar {
+  position: relative;
+  color: transparent !important;
+  background: var(--color-surface-alt);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.is-loading .metric-card__value::after,
+.is-loading .sparkline::after,
+.is-loading .trend-chart::after,
+.is-loading .aging-bar::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-text) 8%, transparent), transparent);
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+/* ============================================================
+   ACCESSIBILITY / QUALITY FLOOR
+   ============================================================ */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .aging-legend { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .metric-grid { grid-template-columns: 1fr; }
+  .aging-legend { grid-template-columns: 1fr; }
+  .ticket-header__client { font-size: 1.5rem; }
+  .panel { padding: 20px 18px 22px; }
+}

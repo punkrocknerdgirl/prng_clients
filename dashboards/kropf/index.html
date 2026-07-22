@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kropf Transfer LLC — Financial Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Layout is shared across every client. Only the theme file below changes. -->
+<link rel="stylesheet" href="../shared/layout.css">
+<link rel="stylesheet" href="theme-kt.css">
+</head>
+<body>
+
+<div class="dash">
+
+  <!-- ============ TICKET-STUB HEADER (module: header) ============ -->
+  <header class="ticket-header">
+    <div class="ticket-header__id">
+      <span class="eyebrow">PRNG Bookkeeping Services · Client Dashboard</span>
+      <h1 class="ticket-header__client">Kropf Transfer LLC</h1>
+      <div class="ticket-header__meta">
+        <span>Reporting period: <b id="meta-period">—</b></span>
+        <span>Last updated: <b id="meta-updated">—</b></span>
+      </div>
+    </div>
+    <div class="stamp" id="freshness-stamp">
+      <div class="stamp__status" id="stamp-status">—</div>
+      <div class="stamp__sub" id="stamp-sub">—</div>
+    </div>
+  </header>
+
+  <!-- ============ MODULE MOUNT POINTS ============ -->
+  <!-- Order and visibility here stand in for future client_config.
+       Comment/uncomment or reorder blocks to change what a client sees. -->
+  <section id="module-metrics" class="metric-grid"></section>
+  <section id="module-trend" class="panel"></section>
+  <section id="module-aging" class="panel"></section>
+
+  <footer class="dash-footer">
+    <span>Prepared by PRNG Bookkeeping Services · for management use only</span>
+    <span class="dash-footer__sample">Sample data — template preview</span>
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   PLACEHOLDER DATA
+   Shape matches what the Airtable → secure endpoint will return.
+   Swap this object for a fetch() to the endpoint once it's live —
+   nothing below this block should need to change.
+   ============================================================ */
+const DASHBOARD_DATA = {
+  client: "Kropf Transfer LLC",
+  status: "Published",           // Draft | Reviewed | Published
+  period: "June 2026",
+  lastUpdated: "Jul 4, 2026 · 8:38 AM",
+
+  months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+
+  revenue:    [95000, 102000, 88000, 97000, 90292, 110994],
+  netIncome:  [12000, 15500, 4200, 9800, 15496, 32305],
+  grossMarginPct: [71.0, 74.2, 68.3, 70.1, 78.4, 75.6],
+  cashBalance: [28000, 33000, 12000, 9000, 32930, 17816],
+
+  arAging: {
+    total: 100656.16,
+    buckets: [
+      { label: "Current", value: 42000.00 },
+      { label: "1–30",    value: 31000.00 },
+      { label: "31–60",   value: 18000.00 },
+      { label: "61–90",   value: 6656.16 },
+      { label: "90+",     value: 3000.00 }
+    ]
+  }
+};
+
+/* ============================================================
+   FORMAT HELPERS
+   ============================================================ */
+const fmtUSD = (n) => n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const fmtUSD2 = (n) => n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+const fmtPct = (n) => `${n.toFixed(1)}%`;
+const pctChange = (curr, prev) => ((curr - prev) / Math.abs(prev)) * 100;
+
+function deltaPill(curr, prev, isPct = false) {
+  const diff = isPct ? curr - prev : pctChange(curr, prev);
+  const dir = diff > 0.05 ? "up" : diff < -0.05 ? "down" : "flat";
+  const arrow = dir === "up" ? "▲" : dir === "down" ? "▼" : "→";
+  const label = isPct ? `${diff > 0 ? "+" : ""}${diff.toFixed(1)}pt` : `${diff > 0 ? "+" : ""}${diff.toFixed(1)}%`;
+  return `<span class="pill pill--${dir}">${arrow} ${label}</span>`;
+}
+
+/* ============================================================
+   MODULE: freshness stamp + header meta
+   ============================================================ */
+function renderHeader(data) {
+  document.getElementById("meta-period").textContent = data.period;
+  document.getElementById("meta-updated").textContent = data.lastUpdated;
+  document.getElementById("stamp-status").textContent = data.status;
+  document.getElementById("stamp-sub").textContent = data.period.toUpperCase();
+
+  const stamp = document.getElementById("freshness-stamp");
+  if (data.status !== "Published") {
+    stamp.style.setProperty("--color-status", "var(--color-text-muted)");
+  }
+}
+
+/* ============================================================
+   MODULE: sparkline (small SVG line, no library)
+   ============================================================ */
+function buildSparkline(values, color) {
+  const w = 100, h = 30, pad = 3;
+  const min = Math.min(...values), max = Math.max(...values);
+  const range = max - min || 1;
+  const pts = values.map((v, i) => {
+    const x = pad + (i / (values.length - 1)) * (w - pad * 2);
+    const y = h - pad - ((v - min) / range) * (h - pad * 2);
+    return [x, y];
+  });
+  const path = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" ");
+  const last = pts[pts.length - 1];
+  return `
+    <svg class="sparkline" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+      <path d="${path}" fill="none" stroke="${color}" stroke-width="2" />
+      <circle cx="${last[0]}" cy="${last[1]}" r="2.6" fill="${color}" />
+    </svg>`;
+}
+
+/* ============================================================
+   MODULE: metric cards
+   ============================================================ */
+function renderMetricCards(data) {
+  const n = data.revenue.length;
+  const cards = [
+    {
+      label: "Revenue",
+      value: fmtUSD(data.revenue[n - 1]),
+      pill: deltaPill(data.revenue[n - 1], data.revenue[n - 2]),
+      spark: buildSparkline(data.revenue, "var(--color-primary)")
+    },
+    {
+      label: "Net Income",
+      value: fmtUSD(data.netIncome[n - 1]),
+      pill: deltaPill(data.netIncome[n - 1], data.netIncome[n - 2]),
+      spark: buildSparkline(data.netIncome, "var(--color-secondary)")
+    },
+    {
+      label: "Gross Margin",
+      value: fmtPct(data.grossMarginPct[n - 1]),
+      pill: deltaPill(data.grossMarginPct[n - 1], data.grossMarginPct[n - 2], true),
+      spark: buildSparkline(data.grossMarginPct, "var(--color-positive)")
+    },
+    {
+      label: "Cash Balance",
+      value: fmtUSD(data.cashBalance[n - 1]),
+      pill: deltaPill(data.cashBalance[n - 1], data.cashBalance[n - 2]),
+      spark: buildSparkline(data.cashBalance, "var(--color-primary)")
+    }
+  ];
+
+  document.getElementById("module-metrics").innerHTML = cards.map(c => `
+    <div class="card metric-card">
+      <div class="metric-card__top">
+        <span class="metric-card__label">${c.label}</span>
+        ${c.pill}
+      </div>
+      <div class="metric-card__value">${c.value}</div>
+      ${c.spark}
+    </div>
+  `).join("");
+}
+
+/* ============================================================
+   MODULE: revenue / net income trend chart
+   ============================================================ */
+function renderTrendChart(data) {
+  const w = 1080, h = 240, padL = 46, padR = 16, padT = 16, padB = 30;
+  const innerW = w - padL - padR, innerH = h - padT - padB;
+
+  const allVals = [...data.revenue, ...data.netIncome];
+  const max = Math.max(...allVals) * 1.1;
+  const min = Math.min(0, ...allVals);
+
+  const xFor = (i) => padL + (i / (data.months.length - 1)) * innerW;
+  const yFor = (v) => padT + innerH - ((v - min) / (max - min)) * innerH;
+
+  const linePath = (vals) => vals.map((v, i) => `${i === 0 ? "M" : "L"}${xFor(i).toFixed(1)},${yFor(v).toFixed(1)}`).join(" ");
+  const areaPath = (vals) => `${linePath(vals)} L${xFor(vals.length - 1).toFixed(1)},${yFor(0).toFixed(1)} L${xFor(0).toFixed(1)},${yFor(0).toFixed(1)} Z`;
+
+  const gridLines = [0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + innerH * (1 - f);
+    return `<line class="grid-line" x1="${padL}" y1="${y.toFixed(1)}" x2="${w - padR}" y2="${y.toFixed(1)}" />`;
+  }).join("");
+
+  const monthLabels = data.months.map((m, i) =>
+    `<text class="axis-label" x="${xFor(i).toFixed(1)}" y="${h - 8}" text-anchor="middle">${m}</text>`
+  ).join("");
+
+  const revDots = data.revenue.map((v, i) => `<circle class="dot dot-revenue" cx="${xFor(i).toFixed(1)}" cy="${yFor(v).toFixed(1)}" />`).join("");
+  const niDots = data.netIncome.map((v, i) => `<circle class="dot dot-netincome" cx="${xFor(i).toFixed(1)}" cy="${yFor(v).toFixed(1)}" />`).join("");
+
+  document.getElementById("module-trend").innerHTML = `
+    <div class="panel__head">
+      <span class="panel__title">Revenue vs. Net Income</span>
+      <span class="panel__hint">Last 6 months</span>
+    </div>
+    <svg class="trend-chart" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">
+      ${gridLines}
+      <path class="area-revenue" d="${areaPath(data.revenue)}" />
+      <path class="line-revenue" d="${linePath(data.revenue)}" />
+      <path class="line-netincome" d="${linePath(data.netIncome)}" />
+      ${revDots}${niDots}
+      ${monthLabels}
+    </svg>
+    <div class="legend">
+      <span class="legend__item"><span class="legend__swatch" style="background:var(--color-primary)"></span>Revenue</span>
+      <span class="legend__item" style="color:var(--color-secondary)"><span class="legend__swatch legend__swatch--dashed"></span>Net Income</span>
+    </div>
+  `;
+}
+
+/* ============================================================
+   MODULE: AR aging
+   ============================================================ */
+function renderARAging(data) {
+  const { total, buckets } = data.arAging;
+  const colors = ["var(--aging-current)", "var(--aging-30)", "var(--aging-60)", "var(--aging-90)", "var(--aging-90plus)"];
+
+  const segments = buckets.map((b, i) => {
+    const pct = (b.value / total) * 100;
+    return `<div class="aging-bar__seg" style="width:${pct}%; background:${colors[i]}" title="${b.label}: ${fmtUSD2(b.value)}">
+      ${pct > 8 ? pct.toFixed(0) + "%" : ""}
+    </div>`;
+  }).join("");
+
+  const legendItems = buckets.map((b, i) => `
+    <div class="aging-legend__item">
+      <div class="aging-legend__label"><span class="aging-legend__dot" style="background:${colors[i]}"></span>${b.label}</div>
+      <div class="aging-legend__value">${fmtUSD(b.value)}</div>
+      <div class="aging-legend__pct">${((b.value / total) * 100).toFixed(1)}% of AR</div>
+    </div>
+  `).join("");
+
+  document.getElementById("module-aging").innerHTML = `
+    <div class="panel__head">
+      <span class="panel__title">Accounts Receivable Aging</span>
+      <span class="panel__hint">Total outstanding: ${fmtUSD(total)}</span>
+    </div>
+    <div class="aging-bar">${segments}</div>
+    <div class="aging-legend">${legendItems}</div>
+  `;
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+renderHeader(DASHBOARD_DATA);
+renderMetricCards(DASHBOARD_DATA);
+renderTrendChart(DASHBOARD_DATA);
+renderARAging(DASHBOARD_DATA);
+</script>
+
+</body>
+</html>
