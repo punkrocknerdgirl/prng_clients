@@ -536,6 +536,16 @@ body {
   display: none !important;
 }
 
+@media print {
+  .report-nav,
+  .footer {
+    display: none !important;
+  }
+  .wrap {
+    padding-top: 0;
+  }
+}
+
 .doc-header {
   background: #ffffff;
   background-image: none !important;
