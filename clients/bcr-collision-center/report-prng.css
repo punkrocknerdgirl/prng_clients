@@ -539,8 +539,8 @@ body {
 .documents-link {
   font-size: inherit;
 }
-.documents-link a {
-  color: #2ca6a4;
+.documents-link {
+  color: #2ca6a4 !important;
   font-weight: 700;
 }
 
