@@ -542,7 +542,117 @@ body {
     display: none !important;
   }
   .wrap {
-    padding-top: 0;
+    padding: 0 8px 10px;
+  }
+  .doc-header.quote-header {
+    padding: 8px 12px 8px !important;
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+  .quote-header-copy {
+    gap: 8px;
+  }
+  .quote-header-copy img {
+    width: 78px;
+    height: 78px;
+  }
+  .doc-header h1 {
+    font-size: 19px;
+    margin-bottom: 2px;
+  }
+  .doc-header .hsub {
+    font-size: 11px;
+  }
+  .hbadge.period {
+    font-size: 10px;
+    min-height: 20px;
+    padding: 3px 8px;
+  }
+  .prepared-line {
+    margin-top: 4px;
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+  .quote-price {
+    padding: 6px 8px;
+  }
+  .intro {
+    padding: 7px 10px;
+    margin-bottom: 9px;
+    font-size: 10px;
+  }
+  .sec-label {
+    margin: 8px 0 4px;
+    font-size: 8px;
+  }
+  .stats {
+    gap: 5px;
+    margin-bottom: 6px;
+  }
+  .sc {
+    padding: 6px 8px;
+  }
+  .sc .sl {
+    font-size: 8px;
+    margin-bottom: 2px;
+  }
+  .sc .sv {
+    font-size: 15px;
+  }
+  .sc .ss {
+    font-size: 9px;
+  }
+  .report-section {
+    margin-bottom: 7px;
+  }
+  .rs-header {
+    padding: 6px 10px;
+  }
+  .rs-header h3 {
+    font-size: 9px;
+  }
+  .rs-body {
+    padding: 7px 10px;
+  }
+  .fee-det {
+    gap: 5px;
+    margin-bottom: 7px;
+  }
+  .fdc {
+    padding: 6px 8px;
+  }
+  .fdl {
+    font-size: 8px;
+  }
+  .fdv {
+    font-size: 10px;
+  }
+  .payment-table {
+    margin-bottom: 7px;
+  }
+  .payment-table caption {
+    padding-bottom: 3px;
+    font-size: 9px;
+  }
+  .payment-table th,
+  .payment-table td {
+    padding: 4px 3px;
+  }
+  .payment-table strong {
+    font-size: 11px;
+  }
+  .payment-table span {
+    font-size: 8px;
+  }
+  .not-inc {
+    padding: 6px 9px;
+    margin-bottom: 8px;
+    font-size: 9px;
+  }
+  .disc {
+    padding-top: 6px;
+    margin-top: 4px;
+    font-size: 8px;
   }
 }
 
