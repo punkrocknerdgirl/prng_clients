@@ -537,8 +537,7 @@ body {
 }
 
 .documents-link {
-  margin: 0 0 14px;
-  font-size: 12px;
+  font-size: inherit;
 }
 .documents-link a {
   color: var(--accent);
