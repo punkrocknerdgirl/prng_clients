@@ -1,0 +1,126 @@
+@import url("https://punkrocknerdgirl.github.io/prng_clients/clients/dads_roofing/dads_roofing_2024/nav.css");
+
+.doc-header.quote-header {
+  position: relative;
+  grid-template-columns: 154px minmax(0, 1fr) auto;
+  column-gap: 24px;
+  align-items: center;
+}
+
+.doc-header.quote-header .quote-header-copy {
+  grid-column: 2;
+  min-width: 0;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.doc-header.quote-header .quote-header-copy h1,
+.doc-header.quote-header .quote-header-copy .hsub,
+.doc-header.quote-header .quote-header-copy .header-badges {
+  grid-column: auto;
+}
+
+.doc-header.quote-header .quote-header-copy .hsub {
+  font-size: 14px;
+  padding-bottom: 8px;
+}
+
+.doc-header.quote-header .header-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.doc-header.quote-header .quote-price {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  align-self: center;
+  justify-self: end;
+  min-width: 200px;
+  padding: 18px 22px;
+  border: 2px solid #246f6b;
+  border-radius: 18px;
+  background-color: #9be4de !important;
+  background-image: none !important;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.quote-price-label {
+  margin-bottom: 4px;
+  color: #246f6b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quote-price-amount {
+  color: #246f6b;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.quote-price-note {
+  margin-top: 6px;
+  color: #246f6b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.report-nav .nav-btn.active,
+.doc-header .hbadge.period {
+  background: #9be4de;
+  border: 1px solid #246f6b;
+  color: #503c52;
+}
+
+.wrap .sec-label {
+  color: #f27eaa;
+}
+
+.wrap .rs-badge.issues {
+  background: #f27eaa;
+  border-color: #f27eaa;
+  color: #3f3f42;
+}
+
+.wrap .rs-badge.fixed-fee {
+  background: #f27eaa;
+  border-color: #f27eaa;
+  color: #ffffff;
+}
+
+.wrap .footer a.footer-link {
+  color: #7f8a8f !important;
+  text-decoration: none;
+}
+
+.wrap .footer a.footer-link:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .doc-header.quote-header {
+    grid-template-columns: 112px minmax(0, 1fr);
+  }
+
+  .doc-header.quote-header .quote-price {
+    grid-column: 2;
+    grid-row: auto;
+    justify-self: start;
+    min-width: 190px;
+    margin-top: 10px;
+    padding: 14px 18px;
+  }
+
+  .quote-price-amount {
+    font-size: 30px;
+  }
+}
